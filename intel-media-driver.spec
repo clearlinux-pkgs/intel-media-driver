@@ -4,7 +4,7 @@
 #
 Name     : intel-media-driver
 Version  : 18.3.0
-Release  : 4
+Release  : 5
 URL      : https://github.com/intel/media-driver/archive/intel-media-18.3.0.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-18.3.0.tar.gz
 Summary  : No detailed summary available
@@ -54,15 +54,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539370571
+export SOURCE_DATE_EPOCH=1539643077
 mkdir -p clr-build
 pushd clr-build
 %cmake .. -DINSTALL_DRIVER_SYSCONF=OFF
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1539370571
+export SOURCE_DATE_EPOCH=1539643077
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/intel-media-driver
 cp LICENSE.md %{buildroot}/usr/share/package-licenses/intel-media-driver/LICENSE.md
@@ -79,6 +79,6 @@ popd
 /usr/lib64/dri/iHD_drv_video.so
 
 %files license
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/package-licenses/intel-media-driver/LICENSE.md
 /usr/share/package-licenses/intel-media-driver/media_driver_media_libvpx.LICENSE
