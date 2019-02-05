@@ -1,0 +1,31 @@
+From 5f25a606b32361d94aa718e52b5834335a6c0ebe Mon Sep 17 00:00:00 2001
+From: Daniel Charles <daniel.charles@intel.com>
+Date: Fri, 21 Dec 2018 16:54:54 -0800
+Subject: [PATCH] installing: install driver with proper permissions
+
+cmake install as PROGRAMS will set the proper permissions
+to iHD_drv_video.so file to be 755 in linux
+
+Fixes #215
+
+Signed-off-by: Daniel Charles <daniel.charles@intel.com>
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9bc8ce39..5e468640 100755
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -75,7 +75,7 @@ if("${LIBVA_DRIVERS_PATH}" STREQUAL "")
+ endif()
+ message(STATUS "LIBVA_DRIVERS_PATH = ${LIBVA_DRIVERS_PATH}")
+ 
+-install (FILES ${CMAKE_CURRENT_BINARY_DIR}/media_driver/iHD_drv_video.so DESTINATION ${LIBVA_DRIVERS_PATH} COMPONENT media)
++install (PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/media_driver/iHD_drv_video.so DESTINATION ${LIBVA_DRIVERS_PATH} COMPONENT media)
+ 
+ option (INSTALL_DRIVER_SYSCONF "Install driver system configuration file" OFF)
+ if (INSTALL_DRIVER_SYSCONF)
+-- 
+2.20.1
+
