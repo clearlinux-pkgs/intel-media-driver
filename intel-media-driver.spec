@@ -4,7 +4,7 @@
 #
 Name     : intel-media-driver
 Version  : 18.4.0
-Release  : 8
+Release  : 9
 URL      : https://github.com/intel/media-driver/archive/intel-media-18.4.0.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-18.4.0.tar.gz
 Summary  : Intel(R) C for Media Runtime
@@ -64,15 +64,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549323887
+export SOURCE_DATE_EPOCH=1551303162
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake .. -DINSTALL_DRIVER_SYSCONF=OFF
 make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549323887
+export SOURCE_DATE_EPOCH=1551303162
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/intel-media-driver
 cp LICENSE.md %{buildroot}/usr/share/package-licenses/intel-media-driver/LICENSE.md
