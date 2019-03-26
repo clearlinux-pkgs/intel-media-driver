@@ -4,7 +4,7 @@
 #
 Name     : intel-media-driver
 Version  : 18.4.0
-Release  : 9
+Release  : 10
 URL      : https://github.com/intel/media-driver/archive/intel-media-18.4.0.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-18.4.0.tar.gz
 Summary  : Intel(R) C for Media Runtime
