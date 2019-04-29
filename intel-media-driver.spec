@@ -4,10 +4,10 @@
 #
 Name     : intel-media-driver
 Version  : 19.1.0
-Release  : 12
+Release  : 13
 URL      : https://github.com/intel/media-driver/archive/intel-media-19.1.0/media-driver-19.1.0.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-19.1.0/media-driver-19.1.0.tar.gz
-Summary  : Intel Media Driver for VAAPI — Broadwell+ iGPUs
+Summary  : Intel(R) C for Media Runtime
 Group    : Development/Tools
 License  : BSD-3-Clause MIT
 Requires: intel-media-driver-lib = %{version}-%{release}
@@ -63,15 +63,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556385800
+export SOURCE_DATE_EPOCH=1556563531
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake .. -DINSTALL_DRIVER_SYSCONF=OFF
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1556385800
+export SOURCE_DATE_EPOCH=1556563531
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/intel-media-driver
 cp LICENSE.md %{buildroot}/usr/share/package-licenses/intel-media-driver/LICENSE.md
