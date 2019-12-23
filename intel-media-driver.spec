@@ -4,7 +4,7 @@
 #
 Name     : intel-media-driver
 Version  : 19.3.0
-Release  : 19
+Release  : 20
 URL      : https://github.com/intel/media-driver/archive/intel-media-19.2.0/media-driver-19.3.0.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-19.2.0/media-driver-19.3.0.tar.gz
 Summary  : Intel(R) C for Media Runtime
