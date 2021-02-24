@@ -4,7 +4,7 @@
 #
 Name     : intel-media-driver
 Version  : 21.1.1
-Release  : 22
+Release  : 23
 URL      : https://github.com/intel/media-driver/archive/intel-media-21.1.1/media-driver-21.1.1.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-21.1.1/media-driver-21.1.1.tar.gz
 Summary  : Intel(R) C for Media Runtime
@@ -14,7 +14,7 @@ Requires: intel-media-driver-lib = %{version}-%{release}
 Requires: intel-media-driver-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : libX11-dev
-BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
+BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86vm-dev
 BuildRequires : libpciaccess-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(igdgmm)
