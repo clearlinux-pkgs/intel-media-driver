@@ -4,7 +4,7 @@
 #
 Name     : intel-media-driver
 Version  : 21.4.3
-Release  : 39
+Release  : 40
 URL      : https://github.com/intel/media-driver/archive/intel-media-21.4.3/media-driver-21.4.3.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-21.4.3/media-driver-21.4.3.tar.gz
 Summary  : Intel(R) C for Media Runtime
