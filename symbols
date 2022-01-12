@@ -23,7 +23,9 @@ libigfxcmrt.so.7:GetCmSupportedAdapters
 libigfxcmrt.so.7:QueryCmAdapterInfo
 libigfxcmrt.so.7:QueryPerformanceCounter
 libigfxcmrt.so.7:QueryPerformanceFrequency
+libigfxcmrt.so.7:_Z12drmGetDeviceiPP10_drmDevice
 libigfxcmrt.so.7:_Z13drmFreeDevicePP10_drmDevice
+libigfxcmrt.so.7:_Z13drmGetDevice2ijPP10_drmDevice
 libigfxcmrt.so.7:_Z13drmGetDevicesPP10_drmDevicei
 libigfxcmrt.so.7:_Z14drmGetDevices2jPP10_drmDevicei
 libigfxcmrt.so.7:_Z18CalcSizeFromHeaderPh
