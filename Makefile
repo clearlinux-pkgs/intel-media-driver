@@ -1,5 +1,5 @@
 PKG_NAME := intel-media-driver
-URL = https://github.com/intel/media-driver/archive/intel-media-22.5.3/media-driver-22.5.3.tar.gz
+URL = https://github.com/intel/media-driver/archive/intel-media-22.5.4/media-driver-22.5.4.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
