@@ -4,7 +4,7 @@
 #
 Name     : intel-media-driver
 Version  : 22.6.0
-Release  : 45
+Release  : 46
 URL      : https://github.com/intel/media-driver/archive/intel-media-22.6.0/media-driver-22.6.0.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-22.6.0/media-driver-22.6.0.tar.gz
 Summary  : Intel(R) C for Media Runtime
