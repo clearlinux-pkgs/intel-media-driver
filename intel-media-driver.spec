@@ -4,7 +4,7 @@
 #
 Name     : intel-media-driver
 Version  : 22.6.5
-Release  : 49
+Release  : 50
 URL      : https://github.com/intel/media-driver/archive/intel-media-22.6.5/media-driver-22.6.5.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-22.6.5/media-driver-22.6.5.tar.gz
 Summary  : Intel(R) C for Media Runtime
@@ -21,9 +21,6 @@ BuildRequires : pkg-config
 BuildRequires : pkgconfig(igdgmm)
 BuildRequires : pkgconfig(libva)
 BuildRequires : pkgconfig(libva-x11)
-# Suppress stripping binaries
-%define __strip /bin/true
-%define debug_package %{nil}
 
 %description
 This directory contains a copy of the installed kernel headers
@@ -68,20 +65,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1672758374
+export SOURCE_DATE_EPOCH=1672759920
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake .. -DINSTALL_DRIVER_SYSCONF=OFF
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1672758374
+export SOURCE_DATE_EPOCH=1672759920
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/intel-media-driver
 cp %{_builddir}/media-driver-intel-media-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/intel-media-driver/0bf81514cc26fb24f29c2b53f3b972066f9cc758 || :
