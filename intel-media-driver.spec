@@ -4,10 +4,10 @@
 # Using build pattern: cmake
 #
 Name     : intel-media-driver
-Version  : 23.1.5
-Release  : 57
-URL      : https://github.com/intel/media-driver/archive/intel-media-23.1.5/media-driver-23.1.5.tar.gz
-Source0  : https://github.com/intel/media-driver/archive/intel-media-23.1.5/media-driver-23.1.5.tar.gz
+Version  : 23.1.6
+Release  : 58
+URL      : https://github.com/intel/media-driver/archive/intel-media-23.1.6/media-driver-23.1.6.tar.gz
+Source0  : https://github.com/intel/media-driver/archive/intel-media-23.1.6/media-driver-23.1.6.tar.gz
 Summary  : Intel(R) C for Media Runtime
 Group    : Development/Tools
 License  : BSD-3-Clause MIT
@@ -58,15 +58,15 @@ license components for the intel-media-driver package.
 
 
 %prep
-%setup -q -n media-driver-intel-media-23.1.5
-cd %{_builddir}/media-driver-intel-media-23.1.5
+%setup -q -n media-driver-intel-media-23.1.6
+cd %{_builddir}/media-driver-intel-media-23.1.6
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680011830
+export SOURCE_DATE_EPOCH=1681142830
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -79,7 +79,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1680011830
+export SOURCE_DATE_EPOCH=1681142830
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/intel-media-driver
 cp %{_builddir}/media-driver-intel-media-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/intel-media-driver/0bf81514cc26fb24f29c2b53f3b972066f9cc758 || :
