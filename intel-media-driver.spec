@@ -4,10 +4,10 @@
 # Using build pattern: cmake
 #
 Name     : intel-media-driver
-Version  : 23.2.0
-Release  : 59
-URL      : https://github.com/intel/media-driver/archive/intel-media-23.2.0/media-driver-23.2.0.tar.gz
-Source0  : https://github.com/intel/media-driver/archive/intel-media-23.2.0/media-driver-23.2.0.tar.gz
+Version  : 23.2.1
+Release  : 60
+URL      : https://github.com/intel/media-driver/archive/intel-media-23.2.1/media-driver-23.2.1.tar.gz
+Source0  : https://github.com/intel/media-driver/archive/intel-media-23.2.1/media-driver-23.2.1.tar.gz
 Summary  : Intel(R) C for Media Runtime
 Group    : Development/Tools
 License  : BSD-3-Clause MIT
@@ -58,15 +58,15 @@ license components for the intel-media-driver package.
 
 
 %prep
-%setup -q -n media-driver-intel-media-23.2.0
-cd %{_builddir}/media-driver-intel-media-23.2.0
+%setup -q -n media-driver-intel-media-23.2.1
+cd %{_builddir}/media-driver-intel-media-23.2.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681829064
+export SOURCE_DATE_EPOCH=1683556437
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -77,24 +77,43 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake .. -DINSTALL_DRIVER_SYSCONF=OFF
 make  %{?_smp_mflags}
 popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fno-lto -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fno-lto -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fno-lto -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fno-lto -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+%cmake .. -DINSTALL_DRIVER_SYSCONF=OFF
+make  %{?_smp_mflags}
+popd
 
 %install
-export SOURCE_DATE_EPOCH=1681829064
+export SOURCE_DATE_EPOCH=1683556437
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/intel-media-driver
 cp %{_builddir}/media-driver-intel-media-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/intel-media-driver/0bf81514cc26fb24f29c2b53f3b972066f9cc758 || :
 cp %{_builddir}/media-driver-intel-media-%{version}/media_driver/media_libvpx.LICENSE %{buildroot}/usr/share/package-licenses/intel-media-driver/4dbe7c1f3a1833a88333a7c282119323e9ef44fa || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
 ## Remove excluded files
 rm -f %{buildroot}*/usr/lib64/igfxcmrt64.so
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libigfxcmrt.so
 /usr/include/igfxcmrt/cm_hw_vebox_cmd_g10.h
 /usr/include/igfxcmrt/cm_rt.h
 /usr/include/igfxcmrt/cm_rt_api_os.h
@@ -111,6 +130,9 @@ rm -f %{buildroot}*/usr/lib64/igfxcmrt64.so
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/dri/iHD_drv_video.so
+/V3/usr/lib64/libigfxcmrt.so.7
+/V3/usr/lib64/libigfxcmrt.so.7.2.0
 /usr/lib64/dri/iHD_drv_video.so
 /usr/lib64/libigfxcmrt.so.7
 /usr/lib64/libigfxcmrt.so.7.2.0
