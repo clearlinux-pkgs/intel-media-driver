@@ -5,7 +5,7 @@
 #
 Name     : intel-media-driver
 Version  : 23.2.2
-Release  : 61
+Release  : 62
 URL      : https://github.com/intel/media-driver/archive/intel-media-23.2.2/media-driver-23.2.2.tar.gz
 Source0  : https://github.com/intel/media-driver/archive/intel-media-23.2.2/media-driver-23.2.2.tar.gz
 Summary  : Intel(R) C for Media Runtime
@@ -66,7 +66,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684336175
+export SOURCE_DATE_EPOCH=1685556792
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -93,7 +93,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1684336175
+export SOURCE_DATE_EPOCH=1685556792
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/intel-media-driver
 cp %{_builddir}/media-driver-intel-media-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/intel-media-driver/0bf81514cc26fb24f29c2b53f3b972066f9cc758 || :
@@ -113,7 +113,6 @@ rm -f %{buildroot}*/usr/lib64/igfxcmrt64.so
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libigfxcmrt.so
 /usr/include/igfxcmrt/cm_hw_vebox_cmd_g10.h
 /usr/include/igfxcmrt/cm_rt.h
 /usr/include/igfxcmrt/cm_rt_api_os.h
@@ -131,7 +130,6 @@ rm -f %{buildroot}*/usr/lib64/igfxcmrt64.so
 %files lib
 %defattr(-,root,root,-)
 /V3/usr/lib64/dri/iHD_drv_video.so
-/V3/usr/lib64/libigfxcmrt.so.7
 /V3/usr/lib64/libigfxcmrt.so.7.2.0
 /usr/lib64/dri/iHD_drv_video.so
 /usr/lib64/libigfxcmrt.so.7
