@@ -6,10 +6,10 @@
 # autospec commit: 5905be9
 #
 Name     : intel-media-driver
-Version  : 24.2.3
-Release  : 85
-URL      : https://github.com/intel/media-driver/archive/intel-media-24.2.3/media-driver-24.2.3.tar.gz
-Source0  : https://github.com/intel/media-driver/archive/intel-media-24.2.3/media-driver-24.2.3.tar.gz
+Version  : 24.2.4
+Release  : 86
+URL      : https://github.com/intel/media-driver/archive/intel-media-24.2.4/media-driver-24.2.4.tar.gz
+Source0  : https://github.com/intel/media-driver/archive/intel-media-24.2.4/media-driver-24.2.4.tar.gz
 Summary  : Intel(R) C for Media Runtime
 Group    : Development/Tools
 License  : BSD-3-Clause MIT
@@ -60,15 +60,15 @@ license components for the intel-media-driver package.
 
 
 %prep
-%setup -q -n media-driver-intel-media-24.2.3
-cd %{_builddir}/media-driver-intel-media-24.2.3
+%setup -q -n media-driver-intel-media-24.2.4
+cd %{_builddir}/media-driver-intel-media-24.2.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1716260599
+export SOURCE_DATE_EPOCH=1716905887
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -120,7 +120,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1716260599
+export SOURCE_DATE_EPOCH=1716905887
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/intel-media-driver
 cp %{_builddir}/media-driver-intel-media-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/intel-media-driver/0bf81514cc26fb24f29c2b53f3b972066f9cc758 || :
